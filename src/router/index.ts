@@ -1,32 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Hello from '../views/Home.vue'
-import HelloWorld from '../components/HelloWorld.vue'
-import ExampleComponent from '../components/ExampleComponent.vue'
-import SimpleArray from '../components/SimpleArray.vue'
-import About from '../components/About.vue'
-import ArrayComponent from '../components/ArrayComponent.vue'
-import fatherComponent from '../components/fatherComponent.vue'
-import constantsComponent from '../components/constantsComponent.vue'
-import ObjectLiterals from '../components/ObjectLiterals.vue'
-import HeaderComponent from '../components/HeaderComponent.vue';
-import usovbind from '../components/usovbind.vue';
-import arreglomovie from '../components/arreglomovie.vue';
-import importacionComponent from '../components/importacionComponent.vue';
-import promesas from '../components/promesas.vue'
+
+const routePlaceholder = { render: () => null }
 
 const routes = [
-  { path: '/example', name: 'Example', component: ExampleComponent },
-  { path: '/about', name: 'About', component: About },
-  { path: '/arreglosimple', name: 'ArregloSimple', component: SimpleArray },
-  { path: '/arraycomponent', name: 'arrayComponent', component: ArrayComponent},
-  { path: '/tipoPadre', name: 'tipoPadre', component: fatherComponent},
-  { path: '/constants', name: 'constants', component: constantsComponent},
-  { path: '/objectLiterals', name: 'objectLiterals', component: ObjectLiterals},
-  { path: '/headerComponent', name: 'headerComponent', component: HeaderComponent},
-  { path: '/usovbind', nmae: 'usovbind', component: usovbind},
-  { path: '/arreglomovie', name: 'arreglomovie', component: arreglomovie},
-  { path: '/importacion', name: 'importacion', component: ()=> import('../components/importacionComponent.vue')},
-  { path: '/promesas', name: 'promesas', component: ()=> import('../components/promesas.vue')}
+  { path: '/', name: 'Inicio', component: routePlaceholder, meta: { contenido: 'inicio' } },
+  { path: '/example', name: 'Example', component: routePlaceholder, meta: { contenido: 'example' } },
+  { path: '/about', name: 'About', component: routePlaceholder, meta: { contenido: 'about' } },
+  { path: '/arreglosimple', name: 'ArregloSimple', component: routePlaceholder, meta: { contenido: 'recorrido' } },
+  { path: '/arraycomponent', name: 'arrayComponent', component: routePlaceholder, meta: { contenido: 'comp-array' } },
+  { path: '/tipoPadre', name: 'tipoPadre', component: routePlaceholder, meta: { contenido: 'padre' } },
+  { path: '/constants', name: 'constants', component: routePlaceholder, meta: { contenido: 'constants' } },
+  { path: '/objectLiterals', name: 'objectLiterals', component: routePlaceholder, meta: { contenido: 'object-literals' } },
+  { path: '/headerComponent', name: 'headerComponent', component: routePlaceholder, meta: { contenido: 'header-component' } },
+  { path: '/usovbind', name: 'usovbind', component: routePlaceholder, meta: { contenido: 'v-bind' } },
+  { path: '/arreglomovie', name: 'arreglomovie', component: routePlaceholder, meta: { contenido: 'recorrido-movies' } },
+  { path: '/importacion', name: 'importacion', component: routePlaceholder, meta: { contenido: 'importacion-exportacion' } },
+  { path: '/promesas', name: 'promesas', component: routePlaceholder, meta: { contenido: 'promesas' } }
 ]
 
 const router = createRouter({

@@ -2,14 +2,6 @@
 
 import { ref } from 'vue'
 
-
-const emit = defineEmits<{
-
-  seleccionar: [contenido: string]
-
-}>()
-
-
 const menuActivo = ref('')
 
 
@@ -27,14 +19,6 @@ const cerrarMenu = () => {
 }
 
 
-const seleccionar = (contenido: string) => {
-
-  emit('seleccionar', contenido)
-
-  menuActivo.value = ''
-
-}
-
 </script>
 
 
@@ -43,26 +27,20 @@ const seleccionar = (contenido: string) => {
   <header class="header">
 
 
-    <div
-      class="titulo"
-      @click="seleccionar('inicio')"
-    >
+    <RouterLink class="titulo" :to="{ name: 'Inicio' }">
 
       Mi Sitio: Demo
 
-    </div>
+    </RouterLink>
 
 
     <nav class="menu">
 
-      <button
-        class="menu-item"
-        @click="seleccionar('inicio')"
-      >
+      <RouterLink class="menu-item" :to="{ name: 'Inicio' }">
 
         Inicio
 
-      </button>
+      </RouterLink>
 
       <div
         class="dropdown"
@@ -80,41 +58,37 @@ const seleccionar = (contenido: string) => {
         <div
           v-if="menuActivo === 'contenido'"
           class="submenu"
+          @click="cerrarMenu"
         >
 
-          <button
-            @click="seleccionar('constants')"
-          >
+          <RouterLink :to="{ name: 'constants' }">
             Constants
-          </button>
+          </RouterLink>
 
 
-          <button
-            @click="seleccionar('object-literals')"
-          >
+          <RouterLink :to="{ name: 'objectLiterals' }">
             Object Literals
-          </button>
+          </RouterLink>
 
 
-          <button
-            @click="seleccionar('header-component')"
-          >
+          <RouterLink :to="{ name: 'headerComponent' }">
             HeaderComponent
-          </button>
+          </RouterLink>
 
 
-          <button
-            @click="seleccionar('v-bind')"
-          >
+          <RouterLink :to="{ name: 'usovbind' }">
             Uso de v-bind
-          </button>
+          </RouterLink>
 
 
-          <button
-            @click="seleccionar('importacion-exportacion')"
-          >
+          <RouterLink :to="{ name: 'importacion' }">
             Importación y Exportación
-          </button>
+          </RouterLink>
+
+
+          <RouterLink :to="{ name: 'promesas' }">
+            promesas
+          </RouterLink>
 
         </div>
 
@@ -136,20 +110,17 @@ const seleccionar = (contenido: string) => {
         <div
           v-if="menuActivo === 'arreglos'"
           class="submenu"
+          @click="cerrarMenu"
         >
 
-          <button
-            @click="seleccionar('recorrido-movies')"
-          >
+          <RouterLink :to="{ name: 'arreglomovie' }">
             Recorrido de movies
-          </button>
+          </RouterLink>
 
 
-          <button
-            @click="seleccionar('recorrido')"
-          >
+          <RouterLink :to="{ name: 'ArregloSimple' }">
             Recorrido
-          </button>
+          </RouterLink>
 
         </div>
 
@@ -171,20 +142,17 @@ const seleccionar = (contenido: string) => {
         <div
           v-if="menuActivo === 'componentes'"
           class="submenu"
+          @click="cerrarMenu"
         >
 
-          <button
-            @click="seleccionar('comp-array')"
-          >
+          <RouterLink :to="{ name: 'arrayComponent' }">
             Comp. tipo Array
-          </button>
+          </RouterLink>
 
 
-          <button
-            @click="seleccionar('padre')"
-          >
+          <RouterLink :to="{ name: 'tipoPadre' }">
             Padre
-          </button>
+          </RouterLink>
 
         </div>
 
@@ -206,20 +174,17 @@ const seleccionar = (contenido: string) => {
         <div
           v-if="menuActivo === 'rutas'"
           class="submenu"
+          @click="cerrarMenu"
         >
 
-          <button
-            @click="seleccionar('example')"
-          >
+          <RouterLink :to="{ name: 'Example' }">
             Example
-          </button>
+          </RouterLink>
 
 
-          <button
-            @click="seleccionar('about')"
-          >
+          <RouterLink :to="{ name: 'About' }">
             About
-          </button>
+          </RouterLink>
 
         </div>
 
@@ -263,6 +228,8 @@ const seleccionar = (contenido: string) => {
 
   white-space: nowrap;
 
+  text-decoration: none;
+
 }
 
 
@@ -283,6 +250,10 @@ const seleccionar = (contenido: string) => {
 
 .menu-item {
 
+  display: flex;
+
+  align-items: center;
+
   height: 100%;
 
   border: none;
@@ -298,6 +269,8 @@ const seleccionar = (contenido: string) => {
   padding: 0;
 
   white-space: nowrap;
+
+  text-decoration: none;
 
 }
 
@@ -343,7 +316,7 @@ const seleccionar = (contenido: string) => {
 }
 
 
-.submenu button {
+.submenu a {
 
   display: block;
 
@@ -366,7 +339,7 @@ const seleccionar = (contenido: string) => {
 }
 
 
-.submenu button:hover {
+.submenu a:hover {
 
   background-color: #666666;
 

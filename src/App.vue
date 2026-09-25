@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
-import { ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 import HeaderComponent from './components/HeaderComponent.vue'
 import HelloWorld from './components/HelloWorld.vue'
@@ -13,11 +14,9 @@ import { alumno, profesor } from './constants/people'
 import './bases/functions.ts'
 
 
-const contenidoActual = ref('inicio')
-
-const cambiarContenido = (contenido: string) => {
-  contenidoActual.value = contenido
-}
+const route = useRoute()
+const contenidoActual = computed(() => String(route.meta.contenido ?? 'inicio'))
+const Promesas = defineAsyncComponent(() => import('./components/promesas.vue'))
 
 
 const number = ref(0)
@@ -79,9 +78,7 @@ const numberxStringArray: (number | string)[] = [
 
   <div class="pagina">
 
-    <HeaderComponent
-      @seleccionar="cambiarContenido"
-    />
+    <HeaderComponent />
 
     <main class="contenido">
 
@@ -263,6 +260,12 @@ const numberxStringArray: (number | string)[] = [
         <p>
           Información acerca de la página.
         </p>
+
+      </div>
+
+      <div v-if="contenidoActual === 'promesas'">
+
+        <Promesas />
 
       </div>
     </main>
